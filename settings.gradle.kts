@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "GithubRepositoryFinder"
 include(":app")
- 
+include(":core:data")
