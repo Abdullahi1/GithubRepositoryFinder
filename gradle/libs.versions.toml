@@ -49,3 +49,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 repofinder-android-application = { id = "repofinder.android.application" }
 repofinder-android-library = { id = "repofinder.android.library" }
 repofinder-android-compose-library = { id = "repofinder.android.compose.library" }
+repofinder-jvm-library = { id = "repofinder.jvm.library" }
