@@ -37,5 +37,15 @@ gradlePlugin {
             id = "repofinder.android.application"
             implementationClass = "AndroidAppGradlePlugin"
         }
+
+        register("androidLibrary") {
+            id = "repofinder.android.library"
+            implementationClass = "AndroidLibraryGradlePlugin"
+        }
+
+        register("androidComposeLibrary") {
+            id = "repofinder.android.compose.library"
+            implementationClass = "ComposeAndroidLibraryGradlePlugin"
+        }
     }
 }
