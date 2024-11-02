@@ -5,6 +5,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class ComposeAndroidLibraryGradlePlugin : Plugin<Project> {
@@ -37,9 +38,9 @@ internal fun Project.addComposeLibraryBlock() = this.extensions.getByType<BaseEx
 
 
     project.tasks.withType(KotlinCompile::class.java).configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_21.toString()
-            freeCompilerArgs = listOf(
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            freeCompilerArgs.addAll(
                 "-Xstring-concat=inline"
             )
         }
