@@ -47,5 +47,10 @@ gradlePlugin {
             id = "repofinder.android.compose.library"
             implementationClass = "ComposeAndroidLibraryGradlePlugin"
         }
+
+        register("jvmLibrary") {
+            id = "repofinder.jvm.library"
+            implementationClass = "KotlinModuleGradlePlugin"
+        }
     }
 }
