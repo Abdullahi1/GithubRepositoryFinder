@@ -4,6 +4,7 @@ import com.example.repofinder.GradlePluginsConfig.ANDROID_LIBRARY
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -17,6 +18,7 @@ class ComposeAndroidLibraryGradlePlugin : Plugin<Project> {
 
 internal fun Project.addComposeLibraryPlugin() {
     plugins.apply(ANDROID_LIBRARY)
+    plugins.apply( "org.jetbrains.kotlin.plugin.compose")
 }
 
 internal fun Project.addComposeLibraryBlock() = this.extensions.getByType<BaseExtension>().run {
