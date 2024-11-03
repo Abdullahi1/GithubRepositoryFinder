@@ -28,6 +28,7 @@ dependencies {
 
     implementation(projects.core.domain)
     implementation(projects.core.data)
+    implementation(projects.core.commondesign)
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
