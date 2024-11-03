@@ -1,4 +1,4 @@
-package com.example.repofinder.ui.theme
+package com.example.commondesign.component.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.example.repofinder.ui.theme
+package com.example.commondesign.component.theme
 
 import android.app.Activity
 import android.os.Build
