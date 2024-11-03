@@ -19,6 +19,7 @@ class ComposeAndroidLibraryGradlePlugin : Plugin<Project> {
 internal fun Project.addComposeLibraryPlugin() {
     plugins.apply(ANDROID_LIBRARY)
     plugins.apply( "org.jetbrains.kotlin.plugin.compose")
+    pluginManager.apply("com.google.devtools.ksp")
 }
 
 internal fun Project.addComposeLibraryBlock() = this.extensions.getByType<BaseExtension>().run {

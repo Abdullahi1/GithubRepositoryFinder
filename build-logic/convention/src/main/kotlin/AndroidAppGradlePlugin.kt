@@ -12,4 +12,5 @@ class AndroidAppGradlePlugin : Plugin<Project> {
 internal fun Project.addApplicationPlugin() {
     plugins.apply(ANDROID_APPLICATION)
     plugins.apply("org.jetbrains.kotlin.android")
+    pluginManager.apply("com.google.devtools.ksp")
 }
