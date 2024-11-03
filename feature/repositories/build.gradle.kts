@@ -11,6 +11,7 @@ android {
 dependencies {
 
     implementation(projects.core.domain)
+    implementation(projects.core.commondesign)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.androidx.compose.bom))
@@ -19,6 +20,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
     implementation(libs.coil.kt.svg)
