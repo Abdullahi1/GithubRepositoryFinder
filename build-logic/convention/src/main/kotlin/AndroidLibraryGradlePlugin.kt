@@ -11,4 +11,5 @@ class AndroidLibraryGradlePlugin : Plugin<Project> {
 
 internal fun Project.addLibraryPlugin() {
     plugins.apply(ANDROID_LIBRARY)
+    pluginManager.apply("com.google.devtools.ksp")
 }
