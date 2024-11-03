@@ -21,6 +21,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "GithubRepositoryFinder"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
 include(":core:data")
 include(":core:domain")
