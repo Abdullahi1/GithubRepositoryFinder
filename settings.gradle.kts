@@ -30,3 +30,5 @@ include(":core:domain")
 include(":feature:home")
 include(":feature:repositories")
 include(":feature:users")
+
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
