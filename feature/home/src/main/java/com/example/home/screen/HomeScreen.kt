@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.commondesign.component.theme.GithubRepositoryFinderTheme
+import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.home.component.HomeMenuCardItem
 import com.example.home.component.HomeMenuItem
 
