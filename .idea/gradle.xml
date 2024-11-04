@@ -32,6 +32,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/repositories" />
+            <option value="$PROJECT_DIR$/feature/userdetails" />
             <option value="$PROJECT_DIR$/feature/users" />
           </set>
         </option>
