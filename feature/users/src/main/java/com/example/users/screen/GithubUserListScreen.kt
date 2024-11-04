@@ -12,8 +12,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.example.commondesign.component.CustomSearchBar
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
+import com.example.users.route.UserScreenRoute
 
 @Composable
 fun GithubUserListScreen(modifier: Modifier = Modifier) {
@@ -36,5 +39,15 @@ fun GithubUserListScreen(modifier: Modifier = Modifier) {
 private fun GGithubUserListScreenPreview() {
     GithubRepositoryFinderTheme {
         GithubUserListScreen()
+    }
+}
+
+fun NavGraphBuilder.usersList(
+    modifier: Modifier = Modifier,
+) {
+    composable<UserScreenRoute> {
+        GithubUserListScreen(
+            modifier = modifier
+        )
     }
 }
