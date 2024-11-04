@@ -25,7 +25,7 @@ fun GithubRepositoryListScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(30.dp))
         Text(text = "Repositories", fontSize = 18.sp, fontWeight = FontWeight.W700)
         Spacer(modifier = Modifier.height(10.dp))
-        CustomSearchBar {  }
+        CustomSearchBar(hintText = "Search for repositories...", onSearchClicked = {})
         Spacer(modifier = Modifier.height(16.dp))
 
     }
