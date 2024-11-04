@@ -32,12 +32,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.example.commondesign.component.CustomCircularNetworkImageLoader
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.userdetails.R
+import com.example.userdetails.route.UserDetailScreenRoute
 
 @Composable
-fun GithubUserDetailScreen(modifier: Modifier = Modifier) {
+fun GithubUserDetailScreen(modifier: Modifier = Modifier, onBackPressed: () -> Unit) {
     val density = LocalDensity.current
     Column(
         modifier = modifier
@@ -46,7 +49,7 @@ fun GithubUserDetailScreen(modifier: Modifier = Modifier) {
     ) {
 
         Spacer(modifier = Modifier.height(25.dp))
-        Box(modifier = Modifier.clickable { }) {
+        Box(modifier = Modifier.clickable { onBackPressed() }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(painter = painterResource(R.drawable.ic_arrow_left), "Arrow Back Button")
                 Spacer(modifier = Modifier.width(8.dp))
@@ -165,6 +168,18 @@ fun GithubUserDetailScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun GithubUserDetailScreenPreview() {
     GithubRepositoryFinderTheme {
-        GithubUserDetailScreen()
+        GithubUserDetailScreen(onBackPressed = {})
+    }
+}
+
+fun NavGraphBuilder.userDetails(
+    modifier: Modifier = Modifier,
+    onBackPressed: () -> Unit
+) {
+    composable<UserDetailScreenRoute> {
+        GithubUserDetailScreen(
+            modifier = modifier,
+            onBackPressed = onBackPressed
+        )
     }
 }

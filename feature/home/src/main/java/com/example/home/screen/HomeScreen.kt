@@ -15,12 +15,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.home.component.HomeMenuCardItem
 import com.example.home.component.HomeMenuItem
+import com.example.home.route.HomeScreenRoute
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, onMenuClicked: (HomeMenuItem) -> Unit) {
     Column(modifier = modifier) {
         Spacer(modifier = Modifier.height(20.dp))
         Text(
@@ -35,7 +38,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 HomeMenuCardItem(
                     modifier = Modifier.padding(8.dp),
                     menuItem = HomeMenuItem.homeMenuList[index],
-                    onClick = {},
+                    onClick = onMenuClicked,
                 )
             }
         })
@@ -47,7 +50,19 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 fun HomeScreenPreview() {
     GithubRepositoryFinderTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            HomeScreen(modifier = Modifier.padding(8.dp))
+            HomeScreen(modifier = Modifier.padding(8.dp), onMenuClicked = {})
         }
+    }
+}
+
+fun NavGraphBuilder.homeScreen(
+    modifier: Modifier = Modifier,
+    onMenuClicked: (HomeMenuItem) -> Unit,
+) {
+    composable<HomeScreenRoute> {
+        HomeScreen(
+            modifier = modifier,
+            onMenuClicked = onMenuClicked
+        )
     }
 }
