@@ -33,3 +33,4 @@ include(":feature:users")
 
 gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
 include(":core:commondesign")
+include(":feature:userdetails")
