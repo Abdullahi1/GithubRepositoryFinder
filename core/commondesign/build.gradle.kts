@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.repofinder.android.compose.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
