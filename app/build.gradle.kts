@@ -26,6 +26,7 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.repositories)
     implementation(projects.feature.users)
+    implementation(projects.feature.userdetails)
 
     implementation(projects.core.domain)
     implementation(projects.core.data)
