@@ -10,11 +10,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,9 +24,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.commondesign.R
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
 
@@ -34,6 +36,7 @@ import com.example.commondesign.theme.GithubRepositoryFinderTheme
 fun CustomSearchBar(
     modifier: Modifier = Modifier,
     onSearchClicked: (TextFieldValue) -> Unit,
+    hintText: String = "",
 ) {
     var textState by remember { mutableStateOf(TextFieldValue()) }
     Row(
@@ -47,14 +50,24 @@ fun CustomSearchBar(
     ) {
         Spacer(modifier = Modifier.width(12.dp))
         Image(painter = painterResource(R.drawable.ic_search), contentDescription = "Search Icon")
-        Spacer(modifier = Modifier.width(12.dp))
-        BasicTextField(
-            modifier = Modifier.weight(2f),
-            value = textState,
-            onValueChange = {
-                textState = it
-            },
-        )
+        TextField(modifier = Modifier.weight(2f), value = textState, onValueChange = {
+            textState = it
+        }, maxLines = 1, colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent,
+            errorIndicatorColor = Color.Transparent,
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent
+
+        ), placeholder = {
+            Text(
+                text = hintText,
+                fontSize = 10.sp,
+                color = Color(0xFFC1C1C1),
+                fontWeight = FontWeight.W500
+            )
+        })
 
         ElevatedButton(
             onClick = {
@@ -66,7 +79,7 @@ fun CustomSearchBar(
                 Text(
                     "Search",
                     color = Color.White,
-                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp)
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
                 )
             },
         )
@@ -80,7 +93,7 @@ private fun CustomSearchBarPreview() {
     GithubRepositoryFinderTheme {
         Column(modifier = Modifier.fillMaxSize()) {
 
-            CustomSearchBar(modifier = Modifier.padding(16.dp), onSearchClicked = {})
+            CustomSearchBar(modifier = Modifier.padding(16.dp), onSearchClicked = {}, hintText = "Search for repositories...")
         }
     }
 }
