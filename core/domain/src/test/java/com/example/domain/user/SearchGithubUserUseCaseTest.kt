@@ -40,7 +40,7 @@ class SearchGithubUserUseCaseTest {
             whenever(repository.searchGithubUser(any())).thenReturn(
                 Resource.success(
                     listOf(
-                        FakeDataClass.githubUserData
+                        FakeDataClass.githubUserSearchData
                     )
                 )
             )
