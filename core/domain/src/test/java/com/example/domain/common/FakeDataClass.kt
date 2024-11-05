@@ -25,7 +25,7 @@ object FakeDataClass {
         userUrl = ""
     )
 
-    val githubUserData = GithubSearchUserData(
+    val githubUserSearchData = GithubSearchUserData(
         userName = "Vundere",
         imageUrl = ""
     )
