@@ -58,7 +58,7 @@ class GithubRepoRepositoryImpl @Inject constructor(
             )
 
 
-            return@withContext Resource.success(searchRepoListResponse.items?.map {
+            return@withContext Resource.success(data = searchRepoListResponse.items?.map {
                 GithubRepositoryData(
                     repositoryId = it.id ?: -1,
                     fullName = it.fullName ?: "",
@@ -69,7 +69,7 @@ class GithubRepoRepositoryImpl @Inject constructor(
                     watchersCount = it.watchersCount ?: 0,
                     userUrl = it.owner?.htmlUrl ?: "",
                 )
-            })
+            } ?: emptyList())
 
         }
 
