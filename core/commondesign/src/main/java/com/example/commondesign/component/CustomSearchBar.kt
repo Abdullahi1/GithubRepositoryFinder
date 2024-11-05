@@ -37,6 +37,7 @@ fun CustomSearchBar(
     modifier: Modifier = Modifier,
     onSearchClicked: (TextFieldValue) -> Unit,
     hintText: String = "",
+    enabled: Boolean = true
 ) {
     var textState by remember { mutableStateOf(TextFieldValue()) }
     Row(
@@ -67,7 +68,8 @@ fun CustomSearchBar(
                 color = Color(0xFFC1C1C1),
                 fontWeight = FontWeight.W500
             )
-        })
+        }, enabled = enabled
+        )
 
         ElevatedButton(
             onClick = {
@@ -82,6 +84,7 @@ fun CustomSearchBar(
                     modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
                 )
             },
+            enabled = enabled
         )
     }
 }
