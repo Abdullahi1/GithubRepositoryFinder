@@ -34,7 +34,7 @@ class GetGithubUserRepositoryUseCaseTest {
     }
 
     @Test
-    fun `verify that repository call returns value on success`() {
+    fun `verify that usecase call returns value on success`() {
         runTest {
             // given that repo search was successful
             whenever(repository.getGithubUserRepositories(any())).thenReturn(
@@ -51,7 +51,7 @@ class GetGithubUserRepositoryUseCaseTest {
     }
 
     @Test
-    fun `verify that repository call returns error message on failure`() {
+    fun `verify that usecase call returns error message on failure`() {
         runTest {
             // given that call is not successful
             val errorMessage = "Not Found"
