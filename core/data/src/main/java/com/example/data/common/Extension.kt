@@ -7,7 +7,7 @@ suspend fun <T> sendRequest(action: suspend () -> T): Result<T> =
     try {
         Result.success(action())
     } catch (e: Exception) {
-        e.printStackTrace()
+//        e.printStackTrace()
         Result.failure(e)
     }
 
