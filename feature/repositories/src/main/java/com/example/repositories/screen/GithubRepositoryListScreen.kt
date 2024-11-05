@@ -123,7 +123,7 @@ private fun GithubRepositoryListScreenPreview() {
                         watchersCount = 10,
                         userUrl = ""
                     ), GithubRepositoryData(
-                        repositoryId = 100,
+                        repositoryId = 101,
                         fullName = "Vundere/Python",
                         githubUrl = "",
                         topics = listOf(
@@ -142,7 +142,7 @@ private fun GithubRepositoryListScreenPreview() {
                         watchersCount = 10,
                         userUrl = ""
                     ), GithubRepositoryData(
-                        repositoryId = 100,
+                        repositoryId = 102,
                         fullName = "Vundere/Python",
                         githubUrl = "",
                         topics = listOf(
@@ -161,7 +161,7 @@ private fun GithubRepositoryListScreenPreview() {
                         watchersCount = 10,
                         userUrl = ""
                     ), GithubRepositoryData(
-                        repositoryId = 100,
+                        repositoryId = 103,
                         fullName = "Vundere/Python",
                         githubUrl = "",
                         topics = listOf(
@@ -180,7 +180,7 @@ private fun GithubRepositoryListScreenPreview() {
                         watchersCount = 10,
                         userUrl = ""
                     ), GithubRepositoryData(
-                        repositoryId = 100,
+                        repositoryId = 104,
                         fullName = "Vundere/Python",
                         githubUrl = "",
                         topics = listOf(
