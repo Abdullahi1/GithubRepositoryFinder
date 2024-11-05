@@ -23,7 +23,7 @@ class GetGithubUserProfileUseCaseTest {
     }
 
     @Test
-    fun `verify that the getGithubUserProfile() method in the GithubRepo repository was called`() {
+    fun `verify that the getGithubUserProfile() method in the User repository was called`() {
         runTest {
             // when we invoke the use case
             getGithubUserProfileUseCase("")
