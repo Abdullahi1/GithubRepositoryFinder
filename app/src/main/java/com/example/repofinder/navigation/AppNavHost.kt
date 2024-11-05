@@ -4,11 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.example.home.route.HomeScreenRoute
 import com.example.home.screen.homeScreen
+import com.example.repositories.route.RepositoryScreenRoute
 import com.example.repositories.screen.repositoryList
 import com.example.userdetails.screen.userDetails
+import com.example.users.route.UserScreenRoute
 import com.example.users.screen.usersList
 
 @Composable
@@ -20,7 +21,13 @@ fun AppNavHost(modifier: Modifier = Modifier, navController: NavHostController,)
         modifier = modifier,
         startDestination = HomeScreenRoute
     ) {
-        homeScreen(modifier = modifier, onMenuClicked = {})
+        homeScreen(modifier = modifier, onMenuClicked = {
+            if (it.id == 100){
+                navController.navigate(UserScreenRoute)
+            }else if (it.id == 101){
+                navController.navigate(RepositoryScreenRoute)
+            }
+        })
         repositoryList(modifier = modifier)
         usersList(modifier = modifier)
         userDetails(modifier = modifier, onBackPressed = {
