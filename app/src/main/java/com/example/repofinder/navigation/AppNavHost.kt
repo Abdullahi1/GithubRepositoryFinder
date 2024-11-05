@@ -28,7 +28,7 @@ fun AppNavHost(modifier: Modifier = Modifier, navController: NavHostController,)
                 navController.navigate(RepositoryScreenRoute)
             }
         })
-        repositoryList(modifier = modifier)
+        repositoryList()
         usersList(modifier = modifier)
         userDetails(modifier = modifier, onBackPressed = {
             navController.navigateUp()
