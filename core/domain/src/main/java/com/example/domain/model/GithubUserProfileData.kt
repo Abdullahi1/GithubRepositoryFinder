@@ -1,6 +1,6 @@
 package com.example.domain.model
 
-data class GithubUserData(
+data class GithubUserProfileData(
     val userName: String,
     val fullName: String,
     val bio: String,

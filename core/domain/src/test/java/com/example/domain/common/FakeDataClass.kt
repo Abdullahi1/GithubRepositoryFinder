@@ -2,7 +2,7 @@ package com.example.domain.common
 
 import com.example.domain.model.GithubRepositoryData
 import com.example.domain.model.GithubSearchUserData
-import com.example.domain.model.GithubUserData
+import com.example.domain.model.GithubUserProfileData
 
 object FakeDataClass {
     val repositoryData = GithubRepositoryData(
@@ -31,7 +31,7 @@ object FakeDataClass {
         imageUrl = ""
     )
 
-    val githubUserProfileData = GithubUserData(
+    val githubUserProfileData = GithubUserProfileData(
         userName = "Vundere",
         fullName = "Vundere/Python",
         imageUrl = "",
