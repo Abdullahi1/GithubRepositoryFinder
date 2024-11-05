@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.commondesign.component.CustomCircularNetworkImageLoader
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
-import com.example.domain.model.GithubUserData
+import com.example.domain.model.GithubUserProfileData
 
 @Composable
-fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserData) {
+fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserProfileData) {
     Column(modifier = modifier) {
         Card(
             modifier = modifier.fillMaxWidth(),
@@ -114,7 +114,7 @@ private fun GithubUserItemCardPreview() {
     GithubRepositoryFinderTheme {
         GithubUserItemCard(
             modifier = Modifier.padding(4.dp),
-            userData = GithubUserData(
+            userData = GithubUserProfileData(
                 userName = "Andry",
                 fullName = "Andry Andre",
                 bio = "This is a random bio, which will be replace with actual content",
