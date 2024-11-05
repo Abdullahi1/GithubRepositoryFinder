@@ -36,7 +36,7 @@ fun GithubUserListScreen(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-private fun GGithubUserListScreenPreview() {
+private fun GithubUserListScreenPreview() {
     GithubRepositoryFinderTheme {
         GithubUserListScreen()
     }
