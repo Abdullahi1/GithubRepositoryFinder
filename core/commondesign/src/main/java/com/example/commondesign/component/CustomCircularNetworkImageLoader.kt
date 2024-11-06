@@ -28,6 +28,9 @@ fun CustomCircularNetworkImageLoader(
         placeholder = placeholder ?: painterResource(
             R.drawable.ic_default_network_image
         ),
+        error = placeholder ?: painterResource(
+            R.drawable.ic_default_network_image
+        ),
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
         modifier = modifier.clip(CircleShape)
