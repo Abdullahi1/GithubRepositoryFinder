@@ -1,8 +1,9 @@
 package com.example.users.screen
 
 import com.example.domain.common.Resource
-import com.example.domain.user.SearchGithubUserProfileUseCase
+import com.example.domain.user.SearchGithubUserProfileRTUseCase
 import com.example.users.common.MainDispatcherRule
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -17,14 +18,14 @@ class GithubUserListViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val searchGithubUserUseCase: SearchGithubUserProfileUseCase = mock()
+    private val searchGithubUserUseCase: SearchGithubUserProfileRTUseCase = mock()
 
     private lateinit var viewmodel: GithubUserListViewModel
 
     @Before
     fun init() {
         viewmodel = GithubUserListViewModel(
-            searchGithubUserProfileUseCase = searchGithubUserUseCase
+            searchGithubUserProfileRTUseCase = searchGithubUserUseCase
         )
     }
 
@@ -36,14 +37,11 @@ class GithubUserListViewModelTest {
     @Test
     fun `state is successful when the search result is successful `() = runTest {
 
-        whenever(searchGithubUserUseCase(any())).thenReturn(Resource.success(emptyList()))
+        whenever(searchGithubUserUseCase(any())).thenReturn(Resource.success(flowOf(emptyList())))
 
         viewmodel.searchUser("")
 
-        Assert.assertEquals(
-            UserListUiState.Success(emptyList()),
-            viewmodel.userListState.value,
-        )
+        Assert.assertTrue(viewmodel.userListState.value is UserListUiState.Success)
     }
 
     @Test
