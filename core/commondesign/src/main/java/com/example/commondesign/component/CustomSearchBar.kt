@@ -59,7 +59,8 @@ fun CustomSearchBar(
             disabledIndicatorColor = Color.Transparent,
             errorIndicatorColor = Color.Transparent,
             focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
+            unfocusedContainerColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent
 
         ), placeholder = {
             Text(
@@ -95,7 +96,6 @@ fun CustomSearchBar(
 private fun CustomSearchBarPreview() {
     GithubRepositoryFinderTheme {
         Column(modifier = Modifier.fillMaxSize()) {
-
             CustomSearchBar(modifier = Modifier.padding(16.dp), onSearchClicked = {}, hintText = "Search for repositories...")
         }
     }
