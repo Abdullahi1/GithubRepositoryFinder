@@ -8,6 +8,7 @@ import com.example.home.route.HomeScreenRoute
 import com.example.home.screen.homeScreen
 import com.example.repositories.route.RepositoryScreenRoute
 import com.example.repositories.screen.repositoryList
+import com.example.userdetails.route.UserDetailScreenRoute
 import com.example.userdetails.screen.userDetails
 import com.example.users.route.UserScreenRoute
 import com.example.users.screen.usersList
@@ -29,7 +30,9 @@ fun AppNavHost(modifier: Modifier = Modifier, navController: NavHostController,)
             }
         })
         repositoryList()
-        usersList(modifier = modifier)
+        usersList(onUserSelected = {
+            navController.navigate(route = UserDetailScreenRoute(userName = it.userName))
+        })
         userDetails(modifier = modifier, onBackPressed = {
             navController.navigateUp()
         })
