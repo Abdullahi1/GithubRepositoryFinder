@@ -74,7 +74,7 @@ data class GithubUserRepositoryResponse(
     @SerialName("archived") var archived: Boolean? = null,
     @SerialName("disabled") var disabled: Boolean? = null,
     @SerialName("open_issues_count") var openIssuesCount: Int? = null,
-    @SerialName("license") var license: String? = null,
+    @SerialName("license") var license: License? = null,
     @SerialName("allow_forking") var allowForking: Boolean? = null,
     @SerialName("is_template") var isTemplate: Boolean? = null,
     @SerialName("web_commit_signoff_required") var webCommitSignoffRequired: Boolean? = null,
@@ -106,5 +106,14 @@ data class GithubUserRepositoryResponse(
         @SerialName("type") var type: String? = null,
         @SerialName("user_view_type") var userViewType: String? = null,
         @SerialName("site_admin") var siteAdmin: Boolean? = null,
+    )
+
+    @Serializable
+    data class License(
+        @SerialName("key") val key: String? = null,
+        @SerialName("name") val name: String? = null,
+        @SerialName("spdx_id") val spdxId: String? = null,
+        @SerialName("url") val url: String? = null,
+        @SerialName("node_id") val nodeId: String? = null,
     )
 }
