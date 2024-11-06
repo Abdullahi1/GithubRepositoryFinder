@@ -66,6 +66,33 @@ class GithubUserRepositoryImpl @Inject constructor(
             } ?: emptyList())
         }
 
+    override suspend fun searchGithubUserProfile(query: String): Resource<List<GithubUserProfileData>> =
+        withContext(Dispatchers.IO) {
+            val usersResult = searchGithubUser(query = query)
+            if (usersResult.isError()){
+                return@withContext Resource.error(message = usersResult.message)
+            }
+
+            val userProfileResult = usersResult.data?.map {
+                val result = getGithubUserProfile(username = it.userName)
+                if (result.isSuccess() && result.data != null){
+                    result.data!!
+                }else{
+                    GithubUserProfileData(
+                        userName = it.userName,
+                        imageUrl = it.imageUrl,
+                        fullName = it.userName,
+                        bio = "",
+                        location = "",
+                        emailAddress = ""
+
+                    )
+                }
+            }
+
+            return@withContext Resource.success(userProfileResult ?: emptyList())
+        }
+
     override suspend fun getGithubUserProfile(username: String): Resource<GithubUserProfileData> =
         withContext(Dispatchers.IO) {
             val result = sendRequest {
