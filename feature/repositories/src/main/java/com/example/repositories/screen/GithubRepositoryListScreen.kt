@@ -120,7 +120,7 @@ private fun GithubRepositoryListScreenPreview() {
                         ),
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                        watchersCount = 10,
+                        starGazersCount = 10,
                         userUrl = "",
                         userImageUrl = ""
                     ), GithubRepositoryData(
@@ -140,7 +140,7 @@ private fun GithubRepositoryListScreenPreview() {
                         ),
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                        watchersCount = 10,
+                        starGazersCount = 10,
                         userUrl = "",
                         userImageUrl = ""
                     ), GithubRepositoryData(
@@ -160,7 +160,7 @@ private fun GithubRepositoryListScreenPreview() {
                         ),
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                        watchersCount = 10,
+                        starGazersCount = 10,
                         userUrl = "",
                         userImageUrl = ""
                     ), GithubRepositoryData(
@@ -180,7 +180,7 @@ private fun GithubRepositoryListScreenPreview() {
                         ),
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                        watchersCount = 10,
+                        starGazersCount = 10,
                         userUrl = "",
                         userImageUrl = ""
                     ), GithubRepositoryData(
@@ -200,7 +200,7 @@ private fun GithubRepositoryListScreenPreview() {
                         ),
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                        watchersCount = 10,
+                        starGazersCount = 10,
                         userUrl = "",
                         userImageUrl = ""
                     )

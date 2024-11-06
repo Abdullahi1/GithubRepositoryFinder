@@ -84,8 +84,12 @@ class GithubUserRepositoryImpl @Inject constructor(
                         fullName = it.userName,
                         bio = "",
                         location = "",
-                        emailAddress = ""
-
+                        emailAddress = "",
+                        followerCount = 0,
+                        followingCount = 0,
+                        createdAt = "",
+                        updateAt = "",
+                        htmlUrl = "",
                     )
                 }
             }
@@ -135,13 +139,17 @@ class GithubUserRepositoryImpl @Inject constructor(
             )
             return@withContext Resource.success(
                 GithubUserProfileData(
-
                     userName = githubUserProfile.login ?: "",
                     fullName = githubUserProfile.name ?: "",
                     bio = githubUserProfile.bio ?: "",
                     location = githubUserProfile.location ?: "",
                     emailAddress = githubUserProfile.email ?: "",
-                    imageUrl = githubUserProfile.avatarUrl ?: ""
+                    imageUrl = githubUserProfile.avatarUrl ?: "",
+                    followerCount = githubUserProfile.followers ?: 0,
+                    followingCount = githubUserProfile.following ?: 0,
+                    createdAt = githubUserProfile.createdAt ?: "",
+                    updateAt = githubUserProfile.updatedAt ?: "",
+                    htmlUrl = githubUserProfile.htmlUrl ?: "",
                 )
             )
         }
@@ -196,8 +204,11 @@ class GithubUserRepositoryImpl @Inject constructor(
                     topics = it.topics ?: emptyList(),
                     language = it.language ?: "",
                     repositoryDescription = it.description ?: "",
-                    watchersCount = it.watchersCount ?: 0,
+                    watchersCount = it.watchers ?: 0,
                     userUrl = it.owner?.htmlUrl ?: "",
+                    starGazersCount = it.stargazersCount ?: 0,
+                    createdAt = it.createdAt ?: "",
+                    updatedAt = it.updatedAt ?: ""
                 )
             })
         }

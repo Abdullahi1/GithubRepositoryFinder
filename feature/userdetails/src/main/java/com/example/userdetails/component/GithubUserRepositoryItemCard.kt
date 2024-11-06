@@ -199,7 +199,10 @@ private fun GithubRepositoryItemCardPreview() {
                 language = "JavaScript",
                 repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                 watchersCount = 10,
-                userUrl = ""
+                userUrl = "",
+                starGazersCount = 1,
+                createdAt = "2015-12-04T06:51:48Z",
+                updatedAt = "2024-08-27T14:17:33Z"
             )
         )
     }
