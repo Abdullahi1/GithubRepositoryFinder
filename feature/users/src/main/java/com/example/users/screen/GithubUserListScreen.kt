@@ -66,7 +66,7 @@ fun GithubUserListScreenContent(
         }, enabled = uiState !is UserListUiState.Loading)
         Spacer(modifier = Modifier.height(16.dp))
         Column(
-            verticalArrangement = if (uiState is UserListUiState.Success && !uiState.isEmpty()) Arrangement.Top else Arrangement.Center,
+            verticalArrangement = if (uiState is UserListUiState.Success) Arrangement.Top else Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()
         ) {
@@ -75,20 +75,22 @@ fun GithubUserListScreenContent(
                 is UserListUiState.Error -> CenteredImage(text = uiState.message)
                 UserListUiState.Loading -> OverlayLoadingWheel("Loading")
                 is UserListUiState.Success -> {
-                    if (uiState.isEmpty()) {
+                    val list by uiState.users.collectAsStateWithLifecycle()
+                    if (list.isEmpty()) {
+                        Spacer(modifier = Modifier.height(90.dp))
                         CenteredImage(text = "We’ve searched the ends of the earth and we’ve not found this user, please try again")
                     } else {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize()
                         ) {
                             items(
-                                count = uiState.users.size,
-                                key = { uiState.users[it].userName }) { index ->
+                                count = list.size,
+                                key = { list[it].userName }) { index ->
                                 GithubUserItemCard(
                                     modifier = Modifier
                                         .animateItem()
                                         .padding(4.dp, 0.dp, 4.dp, 4.dp),
-                                    userData = uiState.users[index],
+                                    userData = list[index],
                                     onClick = onUserSelected
                                 )
                             }
