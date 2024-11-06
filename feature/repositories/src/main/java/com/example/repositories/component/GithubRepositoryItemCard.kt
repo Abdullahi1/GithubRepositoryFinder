@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,7 @@ fun GithubRepositoryItemCard(modifier: Modifier = Modifier, repositoryData: Gith
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(2f)) {
                     CustomCircularNetworkImageLoader(
                         imageUrl = repositoryData.userImageUrl,
                         modifier = Modifier.size(20.dp),
@@ -117,26 +118,29 @@ fun GithubRepositoryItemCard(modifier: Modifier = Modifier, repositoryData: Gith
                         fontSize = 10.sp,
                         fontWeight = FontWeight.W400,
                         color = Color.Black,
-                        text = repositoryData.watchersCount.toString()
+                        text = repositoryData.starGazersCount.toString()
                     )
 
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Box(
-                        modifier = Modifier
-                            .size(12.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF51FD00))
-                    )
+                    if (repositoryData.language.isNotEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .size(12.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF51FD00))
+                        )
 
-                    Spacer(modifier = Modifier.width(2.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
 
-                    Text(
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.W400,
-                        color = Color.Black,
-                        text = repositoryData.language
-                    )
+                        Text(
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.W400,
+                            color = Color.Black,
+                            text = repositoryData.language,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
 
