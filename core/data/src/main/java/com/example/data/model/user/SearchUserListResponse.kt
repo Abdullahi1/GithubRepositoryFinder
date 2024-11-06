@@ -31,6 +31,6 @@ class SearchUserListResponse(
         @SerialName("type") val type: String? = null,
         @SerialName("user_view_type") val userViewType: String? = null,
         @SerialName("site_admin") val siteAdmin: Boolean? = null,
-        @SerialName("score") val score: Int? = null,
+        @SerialName("score") val score: Double? = null,
         )
 }
