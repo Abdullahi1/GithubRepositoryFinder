@@ -54,7 +54,7 @@ fun GithubRepositoryItemCard(modifier: Modifier = Modifier, repositoryData: Gith
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     CustomCircularNetworkImageLoader(
-                        imageUrl = repositoryData.userUrl,
+                        imageUrl = repositoryData.userImageUrl,
                         modifier = Modifier.size(20.dp),
                         contentDescription = "${repositoryData.fullName} Picture",
                     )
@@ -187,7 +187,8 @@ private fun GithubRepositoryItemCardPreview() {
                 language = "Python",
                 repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                 watchersCount = 10,
-                userUrl = ""
+                userUrl = "",
+                userImageUrl = ""
             )
         )
     }
