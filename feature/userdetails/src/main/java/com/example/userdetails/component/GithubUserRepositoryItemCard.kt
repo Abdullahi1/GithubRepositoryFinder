@@ -28,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +56,7 @@ fun GithubRepositoryItemCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(2f), horizontalArrangement = Arrangement.SpaceBetween) {
                     val formattedName = buildAnnotatedString {
                         val names = repositoryData.fullName.split("/")
                         if (names.size > 1) {
@@ -91,7 +92,7 @@ fun GithubRepositoryItemCard(
                             }
                         }
                     }
-                    Text(formattedName)
+                    Text(formattedName, modifier = Modifier.weight(1f))
 
                     Spacer(modifier = Modifier.width(8.dp))
 
@@ -109,6 +110,7 @@ fun GithubRepositoryItemCard(
                     }
                 }
                 Row(
+                    modifier = Modifier.weight(1f),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
@@ -143,7 +145,8 @@ fun GithubRepositoryItemCard(
                         fontSize = 10.sp,
                         fontWeight = FontWeight.W400,
                         color = Color.Black,
-                        text = repositoryData.language
+                        text = repositoryData.language,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
@@ -180,7 +183,7 @@ private fun GithubRepositoryItemCardPreview() {
         GithubRepositoryItemCard(
             modifier = Modifier.padding(10.dp), repositoryData = GithubUserRepositoryData(
                 repositoryId = 100,
-                fullName = "Vundere/Python",
+                fullName = "ibrahim/google-maps-locate-search-address",
                 githubUrl = "",
                 topics = listOf(
                     "Design system",
@@ -193,7 +196,7 @@ private fun GithubRepositoryItemCardPreview() {
                     "Css",
                     "JS"
                 ),
-                language = "Python",
+                language = "JavaScript",
                 repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                 watchersCount = 10,
                 userUrl = ""
