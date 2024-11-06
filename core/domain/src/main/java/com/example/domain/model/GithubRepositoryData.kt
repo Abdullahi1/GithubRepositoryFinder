@@ -7,7 +7,7 @@ data class GithubRepositoryData(
     val topics: List<String>,
     val language: String,
     val repositoryDescription: String,
-    val watchersCount: Int,
+    val starGazersCount: Int,
     val userUrl: String,
     val userImageUrl: String
 )
