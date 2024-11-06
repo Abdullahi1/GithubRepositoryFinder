@@ -43,6 +43,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.example.commondesign.common.Utils
 import com.example.commondesign.component.CustomCircularNetworkImageLoader
 import com.example.commondesign.component.LoadingWheel
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
@@ -153,10 +154,14 @@ fun GithubUserDetailScreenContent(
                                 )
                             }
                         }
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            text = uiState.user.bio, fontSize = 12.sp, fontWeight = FontWeight.W500
-                        )
+                        if (uiState.user.bio.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = uiState.user.bio,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.W500
+                            )
+                        }
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
@@ -177,7 +182,7 @@ fun GithubUserDetailScreenContent(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "",
+                                text = uiState.user.htmlUrl,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.W500,
                                 color = Color(0xFF1A1A1A)
@@ -191,14 +196,14 @@ fun GithubUserDetailScreenContent(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "400 followers  .",
+                                text = "${Utils.formatNumber(uiState.user.followerCount)} followers  .",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.W500,
                                 color = Color(0x8D1A1A1A)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "30 following",
+                                text = "${Utils.formatNumber(uiState.user.followingCount)} following",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.W500,
                                 color = Color(0x8D1A1A1A)
@@ -233,7 +238,7 @@ fun GithubUserDetailScreenContent(
                                                     shape = AbsoluteRoundedCornerShape(8.dp)
                                                 )
                                                 .padding(vertical = 1.dp, horizontal = 8.dp),
-                                            text = if (uiState.repositories.isEmpty()) "0" else "${uiState.repositories.size}",
+                                            text = if (uiState.repositories.isEmpty()) "0" else Utils.formatNumber(uiState.repositories.size),
                                             fontSize = 8.sp,
                                             fontWeight = FontWeight.W600,
                                         )
