@@ -47,7 +47,7 @@ fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserProfil
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = userData.fullName,
+                        text = userData.fullName.ifEmpty { userData.userName },
                         color = Color(0xFF408AAA),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.W600,
