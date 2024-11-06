@@ -9,6 +9,8 @@ import com.example.domain.model.GithubUserProfileData
 import com.example.domain.model.GithubUserRepositoryData
 import com.example.domain.user.GithubUserRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -69,15 +71,15 @@ class GithubUserRepositoryImpl @Inject constructor(
     override suspend fun searchGithubUserProfile(query: String): Resource<List<GithubUserProfileData>> =
         withContext(Dispatchers.IO) {
             val usersResult = searchGithubUser(query = query)
-            if (usersResult.isError()){
+            if (usersResult.isError()) {
                 return@withContext Resource.error(message = usersResult.message)
             }
 
             val userProfileResult = usersResult.data?.map {
                 val result = getGithubUserProfile(username = it.userName)
-                if (result.isSuccess() && result.data != null){
+                if (result.isSuccess() && result.data != null) {
                     result.data!!
-                }else{
+                } else {
                     GithubUserProfileData(
                         userName = it.userName,
                         imageUrl = it.imageUrl,
@@ -95,6 +97,41 @@ class GithubUserRepositoryImpl @Inject constructor(
             }
 
             return@withContext Resource.success(userProfileResult ?: emptyList())
+        }
+
+    override suspend fun searchGithubUserProfileRT(query: String): Resource<Flow<List<GithubUserProfileData>>> =
+        withContext(Dispatchers.IO) {
+            val list = mutableMapOf<String, GithubUserProfileData>()
+            val usersResult = searchGithubUser(query = query)
+            if (usersResult.isError()) {
+                return@withContext Resource.error(message = usersResult.message)
+            }
+
+            return@withContext Resource.success(flow<List<GithubUserProfileData>> {
+                usersResult.data?.forEach {
+                    val result = getGithubUserProfile(username = it.userName)
+                    val profileData = if (result.isSuccess() && result.data != null) {
+                        result.data!!
+                    } else {
+                        GithubUserProfileData(
+                            userName = it.userName,
+                            imageUrl = it.imageUrl,
+                            fullName = it.userName,
+                            bio = "",
+                            location = "",
+                            emailAddress = "",
+                            followerCount = 0,
+                            followingCount = 0,
+                            createdAt = "",
+                            updateAt = "",
+                            htmlUrl = "",
+                        )
+                    }
+                    list[profileData.userName] = profileData
+                    list.replace(profileData.userName, profileData)
+                    emit(list.values.toList())
+                }
+            })
         }
 
     override suspend fun getGithubUserProfile(username: String): Resource<GithubUserProfileData> =
@@ -131,7 +168,9 @@ class GithubUserRepositoryImpl @Inject constructor(
                         "Connection error. Try again"
                     }
                 }
-                return@withContext Resource.error(message = exceptionMessage ?: "An error Occurred")
+                return@withContext Resource.error(
+                    message = exceptionMessage ?: "An error Occurred"
+                )
             }
 
             val githubUserProfile = result.getOrNull() ?: return@withContext Resource.error(
@@ -188,7 +227,9 @@ class GithubUserRepositoryImpl @Inject constructor(
                         "Connection error. Try again"
                     }
                 }
-                return@withContext Resource.error(message = exceptionMessage ?: "An error Occurred")
+                return@withContext Resource.error(
+                    message = exceptionMessage ?: "An error Occurred"
+                )
             }
 
             val repositoryList = result.getOrNull() ?: return@withContext Resource.error(
