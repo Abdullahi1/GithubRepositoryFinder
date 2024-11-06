@@ -171,7 +171,7 @@ private fun GithubRepositoryItemCardPreview() {
         GithubRepositoryItemCard(
             modifier = Modifier.padding(10.dp), repositoryData = GithubRepositoryData(
                 repositoryId = 100,
-                fullName = "Vundere/Python",
+                fullName = "ibrahim/google-maps-locate-search-address",
                 githubUrl = "",
                 topics = listOf(
                     "Design system",
@@ -186,7 +186,7 @@ private fun GithubRepositoryItemCardPreview() {
                 ),
                 language = "Python",
                 repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-                watchersCount = 10,
+                starGazersCount = 10,
                 userUrl = "",
                 userImageUrl = ""
             )

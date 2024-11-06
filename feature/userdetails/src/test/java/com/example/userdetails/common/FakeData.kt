@@ -10,6 +10,11 @@ object FakeData {
         bio = "",
         location = "",
         emailAddress = "",
-        imageUrl = ""
+        imageUrl = "",
+        followerCount = 11,
+        followingCount = 12,
+        htmlUrl = "",
+        createdAt = "",
+        updateAt = ""
     )
 }
