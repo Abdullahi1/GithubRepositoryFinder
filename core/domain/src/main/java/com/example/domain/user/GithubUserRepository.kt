@@ -9,6 +9,8 @@ interface GithubUserRepository {
 
     suspend fun searchGithubUser(query: String): Resource<List<GithubSearchUserData>>
 
+    suspend fun searchGithubUserProfile(query: String): Resource<List<GithubUserProfileData>>
+
     suspend fun getGithubUserProfile(username: String): Resource<GithubUserProfileData>
 
     suspend fun getGithubUserRepositories(username: String): Resource<List<GithubUserRepositoryData>>
