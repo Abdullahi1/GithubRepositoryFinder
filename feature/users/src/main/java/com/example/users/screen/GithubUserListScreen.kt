@@ -21,9 +21,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.commondesign.component.CustomSearchBar
-import com.example.commondesign.component.LoadingWheel
 import com.example.commondesign.component.OverlayLoadingWheel
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
+import com.example.domain.model.GithubUserProfileData
 import com.example.users.component.CenteredImage
 import com.example.users.component.GithubUserItemCard
 import com.example.users.route.UserScreenRoute
@@ -31,11 +31,17 @@ import com.example.users.route.UserScreenRoute
 @Composable
 fun GithubUserListScreen(
     modifier: Modifier = Modifier,
+    onUserSelected: (GithubUserProfileData) -> Unit,
     viewModel: GithubUserListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.userListState.collectAsStateWithLifecycle()
 
-    GithubUserListScreenContent(modifier = modifier, uiState = uiState, onSearchClicked = viewModel::searchUser)
+    GithubUserListScreenContent(
+        modifier = modifier,
+        uiState = uiState,
+        onSearchClicked = viewModel::searchUser,
+        onUserSelected = onUserSelected
+    )
 }
 
 @Composable
@@ -43,6 +49,7 @@ fun GithubUserListScreenContent(
     modifier: Modifier = Modifier,
     uiState: UserListUiState = UserListUiState.Empty,
     onSearchClicked: (String) -> Unit,
+    onUserSelected: (GithubUserProfileData) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -53,7 +60,7 @@ fun GithubUserListScreenContent(
         Text(text = "Users", fontSize = 18.sp, fontWeight = FontWeight.W700)
         Spacer(modifier = Modifier.height(10.dp))
         CustomSearchBar(hintText = "Search for users...", onSearchClicked = {
-            if(it.text.isNotEmpty()){
+            if (it.text.isNotEmpty()) {
                 onSearchClicked(it.text)
             }
         }, enabled = uiState !is UserListUiState.Loading)
@@ -74,10 +81,15 @@ fun GithubUserListScreenContent(
                         LazyColumn(
                             modifier = Modifier.fillMaxSize()
                         ) {
-                            items(count = uiState.users.size, key = { uiState.users[it].userName }) { index ->
+                            items(
+                                count = uiState.users.size,
+                                key = { uiState.users[it].userName }) { index ->
                                 GithubUserItemCard(
-                                    modifier = Modifier.animateItem().padding(4.dp,0.dp, 4.dp, 4.dp),
-                                    userData = uiState.users[index]
+                                    modifier = Modifier
+                                        .animateItem()
+                                        .padding(4.dp, 0.dp, 4.dp, 4.dp),
+                                    userData = uiState.users[index],
+                                    onClick = onUserSelected
                                 )
                             }
                         }
@@ -92,16 +104,18 @@ fun GithubUserListScreenContent(
 @Composable
 private fun GithubUserListScreenPreview() {
     GithubRepositoryFinderTheme {
-        GithubUserListScreenContent(onSearchClicked = {})
+        GithubUserListScreenContent(onSearchClicked = {}, onUserSelected = {})
     }
 }
 
 fun NavGraphBuilder.usersList(
     modifier: Modifier = Modifier,
+    onUserSelected: (GithubUserProfileData) -> Unit,
 ) {
     composable<UserScreenRoute> {
         GithubUserListScreen(
-            modifier = modifier
+            modifier = modifier,
+            onUserSelected = onUserSelected
         )
     }
 }
