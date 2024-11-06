@@ -28,7 +28,8 @@ fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserProfil
         Card(
             modifier = modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-            shape = RectangleShape
+            shape = RectangleShape,
+            colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
             Row(
                 modifier = Modifier
