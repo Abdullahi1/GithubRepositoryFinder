@@ -127,7 +127,12 @@ private fun GithubUserItemCardPreview() {
                 bio = "This is a random bio, which will be replace with actual content",
                 emailAddress = "andry@andry.com",
                 location = "portugal",
-                imageUrl = ""
+                imageUrl = "",
+                followerCount = 10,
+                followingCount = 11,
+                createdAt = "",
+                updateAt = "",
+                htmlUrl = ""
             ),
             onClick = {}
         )

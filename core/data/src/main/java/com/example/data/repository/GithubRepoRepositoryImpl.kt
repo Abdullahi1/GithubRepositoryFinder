@@ -66,7 +66,7 @@ class GithubRepoRepositoryImpl @Inject constructor(
                     topics = it.topics ?: emptyList(),
                     language = it.language ?: "",
                     repositoryDescription = it.description ?: "",
-                    watchersCount = it.watchersCount ?: 0,
+                    starGazersCount = it.stargazersCount ?: 0,
                     userUrl = it.owner?.htmlUrl ?: "",
                     userImageUrl = it.owner?.avatarUrl ?: ""
                 )
