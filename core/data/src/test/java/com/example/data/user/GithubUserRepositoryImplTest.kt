@@ -187,4 +187,60 @@ class GithubUserRepositoryImplTest {
             Assert.assertTrue(result.isError())
             Assert.assertEquals(result.message, "Internal Server Error")
         }
+
+    @Test
+    fun `check that searchGithubUserProfile() returns success on successful call`() =
+        runTest {
+
+            //given that the api requests is successful
+            whenever(api.searchUser(any())).thenReturn(FakeResponseData.fakeGithubUserSearchResponse)
+            whenever(api.getGithubUserProfile(any())).thenReturn(FakeResponseData.fakeGithubUserProfileResponse)
+
+            val result = repository.searchGithubUserProfile("q")
+
+
+            Assert.assertTrue(result.isSuccess())
+            Assert.assertTrue(result.data != null)
+        }
+
+    @Test
+    fun `check that searchGithubUserProfile() returns success on even if the second api request fails`() =
+        runTest {
+
+            //given that the searchUser api request is successful and getGithubUserProfile api request fails
+            whenever(api.searchUser(any())).thenReturn(FakeResponseData.fakeGithubUserSearchResponse)
+            whenever(api.getGithubUserProfile(any())).thenThrow(
+                HttpException(
+                    Response.error<SearchRepositoryListResponse>(
+                        404, "a".toResponseBody("application/json".toMediaType())
+                    )
+                )
+            )
+            val result = repository.searchGithubUserProfile("q")
+
+
+            Assert.assertTrue(result.isSuccess())
+            Assert.assertTrue(result.data != null)
+        }
+
+    @Test
+    fun `check that searchGithubUserProfile() returns error if the searchUser() call fails`() =
+        runTest {
+
+            //given that the api request fails with an exception
+            whenever(api.searchUser(any())).thenThrow(
+                HttpException(
+                    Response.error<SearchRepositoryListResponse>(
+                        404, "a".toResponseBody("application/json".toMediaType())
+                    )
+                )
+            )
+
+            val result = repository.searchGithubUserProfile("q")
+
+
+            Assert.assertTrue(result.isError())
+            Assert.assertEquals(result.message, "Not Found")
+        }
+
 }
