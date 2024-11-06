@@ -33,6 +33,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.commondesign.common.Utils
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.domain.model.GithubUserRepositoryData
 
@@ -127,48 +128,61 @@ fun GithubRepositoryItemCard(
                         fontSize = 10.sp,
                         fontWeight = FontWeight.W400,
                         color = Color.Black,
-                        text = repositoryData.watchersCount.toString()
+                        text = Utils.formatNumber(repositoryData.starGazersCount)
                     )
 
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Box(
-                        modifier = Modifier
-                            .size(12.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF51FD00))
-                    )
+                    if (repositoryData.language.isNotEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .size(12.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF51FD00))
+                        )
 
-                    Spacer(modifier = Modifier.width(2.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
 
-                    Text(
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.W400,
-                        color = Color.Black,
-                        text = repositoryData.language,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                        Text(
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.W400,
+                            color = Color.Black,
+                            text = repositoryData.language,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            if (repositoryData.repositoryDescription.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(10.dp))
 
-            Text(
-                fontSize = 12.sp,
-                fontWeight = FontWeight.W400,
-                color = Color.Black,
-                text = repositoryData.repositoryDescription
-            )
+                Text(
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black,
+                    text = repositoryData.repositoryDescription
+                )
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = "30 following",
-                fontSize = 10.sp,
-                fontWeight = FontWeight.W400,
-                color = Color(0xFF1A1A1A)
-            )
+            Row {
+                Text(
+                    text = "${Utils.formatNumber(repositoryData.watchersCount)} Watchers",
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.W400,
+                    color = Color(0xFF1A1A1A)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(
+                    text = "Updated ${Utils.formatRelativeDate(repositoryData.updatedAt)}",
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.W400,
+                    color = Color(0xFF1A1A1A)
+                )
 
+            }
 
 
         }
