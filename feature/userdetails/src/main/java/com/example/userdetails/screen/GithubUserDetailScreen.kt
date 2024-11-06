@@ -272,7 +272,7 @@ fun GithubUserDetailScreenContent(
                         GithubRepositoryItemCard(
                             modifier = Modifier
                                 .animateItem()
-                                .padding(top = 4.dp),
+                                .padding(bottom = 4.dp),
                             repositoryData = uiState.repositories[index]
                         )
                     }
