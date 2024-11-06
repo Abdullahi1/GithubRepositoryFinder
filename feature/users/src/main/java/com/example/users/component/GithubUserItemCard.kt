@@ -23,13 +23,20 @@ import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.domain.model.GithubUserProfileData
 
 @Composable
-fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserProfileData) {
+fun GithubUserItemCard(
+    modifier: Modifier = Modifier,
+    userData: GithubUserProfileData,
+    onClick: (GithubUserProfileData) -> Unit,
+) {
     Column(modifier = modifier) {
         Card(
             modifier = modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             shape = RectangleShape,
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            onClick = {
+                onClick(userData)
+            }
         ) {
             Row(
                 modifier = Modifier
@@ -114,15 +121,15 @@ fun GithubUserItemCard(modifier: Modifier = Modifier, userData: GithubUserProfil
 private fun GithubUserItemCardPreview() {
     GithubRepositoryFinderTheme {
         GithubUserItemCard(
-            modifier = Modifier.padding(4.dp),
-            userData = GithubUserProfileData(
+            modifier = Modifier.padding(4.dp), userData = GithubUserProfileData(
                 userName = "Andry",
                 fullName = "Andry Andre",
                 bio = "This is a random bio, which will be replace with actual content",
                 emailAddress = "andry@andry.com",
                 location = "portugal",
                 imageUrl = ""
-            )
+            ),
+            onClick = {}
         )
     }
 }
