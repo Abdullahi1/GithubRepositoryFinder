@@ -8,5 +8,6 @@ data class GithubRepositoryData(
     val language: String,
     val repositoryDescription: String,
     val watchersCount: Int,
-    val userUrl: String
+    val userUrl: String,
+    val userImageUrl: String
 )

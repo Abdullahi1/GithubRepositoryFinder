@@ -121,7 +121,8 @@ private fun GithubRepositoryListScreenPreview() {
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                         watchersCount = 10,
-                        userUrl = ""
+                        userUrl = "",
+                        userImageUrl = ""
                     ), GithubRepositoryData(
                         repositoryId = 101,
                         fullName = "Vundere/Python",
@@ -140,7 +141,8 @@ private fun GithubRepositoryListScreenPreview() {
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                         watchersCount = 10,
-                        userUrl = ""
+                        userUrl = "",
+                        userImageUrl = ""
                     ), GithubRepositoryData(
                         repositoryId = 102,
                         fullName = "Vundere/Python",
@@ -159,7 +161,8 @@ private fun GithubRepositoryListScreenPreview() {
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                         watchersCount = 10,
-                        userUrl = ""
+                        userUrl = "",
+                        userImageUrl = ""
                     ), GithubRepositoryData(
                         repositoryId = 103,
                         fullName = "Vundere/Python",
@@ -178,7 +181,8 @@ private fun GithubRepositoryListScreenPreview() {
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                         watchersCount = 10,
-                        userUrl = ""
+                        userUrl = "",
+                        userImageUrl = ""
                     ), GithubRepositoryData(
                         repositoryId = 104,
                         fullName = "Vundere/Python",
@@ -197,7 +201,8 @@ private fun GithubRepositoryListScreenPreview() {
                         language = "Python",
                         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
                         watchersCount = 10,
-                        userUrl = ""
+                        userUrl = "",
+                        userImageUrl = ""
                     )
                 )
             )
