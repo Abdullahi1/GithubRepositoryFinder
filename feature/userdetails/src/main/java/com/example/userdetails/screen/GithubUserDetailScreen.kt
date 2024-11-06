@@ -44,7 +44,7 @@ fun GithubUserDetailScreen(modifier: Modifier = Modifier, onBackPressed: () -> U
     val density = LocalDensity.current
     Column(
         modifier = modifier
-            .padding(10.dp)
+            .padding(vertical = 10.dp, horizontal = 20.dp)
             .fillMaxSize(),
     ) {
 
@@ -91,7 +91,7 @@ fun GithubUserDetailScreen(modifier: Modifier = Modifier, onBackPressed: () -> U
                 text = "Lagos, Nigeria",
                 fontSize = 10.sp,
                 fontWeight = FontWeight.W500,
-                color = Color(0x1A1A1A8C)
+                color = Color(0x8D1A1A1A)
             )
             Spacer(modifier = Modifier.width(12.dp))
             Image(
@@ -117,14 +117,14 @@ fun GithubUserDetailScreen(modifier: Modifier = Modifier, onBackPressed: () -> U
                 text = "400 followers  .",
                 fontSize = 10.sp,
                 fontWeight = FontWeight.W500,
-                color = Color(0x1A1A1A8C)
+                color = Color(0x8D1A1A1A)
             )
             Spacer(modifier = Modifier.width(6.dp))
             Text(
                 text = "30 following",
                 fontSize = 10.sp,
                 fontWeight = FontWeight.W500,
-                color = Color(0x1A1A1A8C)
+                color = Color(0x8D1A1A1A)
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

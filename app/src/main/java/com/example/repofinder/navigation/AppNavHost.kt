@@ -22,7 +22,7 @@ fun AppNavHost(modifier: Modifier = Modifier, navController: NavHostController,)
         modifier = modifier,
         startDestination = HomeScreenRoute
     ) {
-        homeScreen(modifier = modifier, onMenuClicked = {
+        homeScreen(onMenuClicked = {
             if (it.id == 100){
                 navController.navigate(UserScreenRoute)
             }else if (it.id == 101){
@@ -33,7 +33,7 @@ fun AppNavHost(modifier: Modifier = Modifier, navController: NavHostController,)
         usersList(onUserSelected = {
             navController.navigate(route = UserDetailScreenRoute(userName = it.userName))
         })
-        userDetails(modifier = modifier, onBackPressed = {
+        userDetails(onBackPressed = {
             navController.navigateUp()
         })
     }
