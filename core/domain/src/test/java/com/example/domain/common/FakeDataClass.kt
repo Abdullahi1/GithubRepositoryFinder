@@ -23,8 +23,9 @@ object FakeDataClass {
         ),
         language = "Python",
         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
-        watchersCount = 10,
-        userUrl = ""
+        starGazersCount = 10,
+        userUrl = "",
+        userImageUrl = ""
     )
 
     val githubUserSearchData = GithubSearchUserData(
@@ -38,7 +39,12 @@ object FakeDataClass {
         imageUrl = "",
         bio = "These are random words that will be replaced in due time. ",
         location = "Lagos, Nigeria",
-        emailAddress = ""
+        emailAddress = "",
+        createdAt = "",
+        updateAt = "",
+        followerCount = 12,
+        followingCount = 13,
+        htmlUrl = ""
     )
 
     val githubUserRepositoryData = GithubUserRepositoryData(
@@ -59,6 +65,9 @@ object FakeDataClass {
         language = "Python",
         repositoryDescription = "These are random words that will be replaced in due time. Config files for my github profile",
         watchersCount = 10,
-        userUrl = ""
+        userUrl = "",
+        starGazersCount = 0,
+        createdAt = "",
+        updatedAt = ""
     )
 }
