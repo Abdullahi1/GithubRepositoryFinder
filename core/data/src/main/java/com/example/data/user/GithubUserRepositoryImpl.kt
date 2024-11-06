@@ -108,28 +108,32 @@ class GithubUserRepositoryImpl @Inject constructor(
             }
 
             return@withContext Resource.success(flow<List<GithubUserProfileData>> {
-                usersResult.data?.forEach {
-                    val result = getGithubUserProfile(username = it.userName)
-                    val profileData = if (result.isSuccess() && result.data != null) {
-                        result.data!!
-                    } else {
-                        GithubUserProfileData(
-                            userName = it.userName,
-                            imageUrl = it.imageUrl,
-                            fullName = it.userName,
-                            bio = "",
-                            location = "",
-                            emailAddress = "",
-                            followerCount = 0,
-                            followingCount = 0,
-                            createdAt = "",
-                            updateAt = "",
-                            htmlUrl = "",
-                        )
-                    }
-                    list[profileData.userName] = profileData
-                    list.replace(profileData.userName, profileData)
+                if (usersResult.data.isNullOrEmpty()){
                     emit(list.values.toList())
+                }else {
+                    usersResult.data?.forEach {
+                        val result = getGithubUserProfile(username = it.userName)
+                        val profileData = if (result.isSuccess() && result.data != null) {
+                            result.data!!
+                        } else {
+                            GithubUserProfileData(
+                                userName = it.userName,
+                                imageUrl = it.imageUrl,
+                                fullName = it.userName,
+                                bio = "",
+                                location = "",
+                                emailAddress = "",
+                                followerCount = 0,
+                                followingCount = 0,
+                                createdAt = "",
+                                updateAt = "",
+                                htmlUrl = "",
+                            )
+                        }
+                        list[profileData.userName] = profileData
+                        list.replace(profileData.userName, profileData)
+                        emit(list.values.toList())
+                    }
                 }
             })
         }
