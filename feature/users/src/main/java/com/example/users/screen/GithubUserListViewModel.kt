@@ -2,8 +2,7 @@ package com.example.users.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.GithubUserProfileData
-import com.example.domain.user.SearchGithubUserUseCase
+import com.example.domain.user.SearchGithubUserProfileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GithubUserListViewModel @Inject constructor(
-    val searchGithubUserUseCase: SearchGithubUserUseCase,
+    val searchGithubUserProfileUseCase: SearchGithubUserProfileUseCase,
 ) : ViewModel() {
 
     private val _userListState = MutableStateFlow<UserListUiState>(UserListUiState.Empty)
@@ -22,19 +21,9 @@ class GithubUserListViewModel @Inject constructor(
     fun searchUser(inputText: String) {
         viewModelScope.launch {
             _userListState.value = UserListUiState.Loading
-            val result = searchGithubUserUseCase(param = inputText)
+            val result = searchGithubUserProfileUseCase(param = inputText)
             if (result.isSuccess()) {
-                _userListState.value = UserListUiState.Success(users = result.data?.map {
-                    GithubUserProfileData(
-                        userName = it.userName,
-                        imageUrl = it.imageUrl,
-                        fullName = it.userName,
-                        bio = "",
-                        location = "",
-                        emailAddress = ""
-
-                    )
-                } ?: emptyList())
+                _userListState.value = UserListUiState.Success(users = result.data ?: emptyList())
             } else {
                 _userListState.value = UserListUiState.Error(result.message)
             }

@@ -1,7 +1,7 @@
 package com.example.users.screen
 
 import com.example.domain.common.Resource
-import com.example.domain.user.SearchGithubUserUseCase
+import com.example.domain.user.SearchGithubUserProfileUseCase
 import com.example.users.common.MainDispatcherRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
@@ -17,14 +17,14 @@ class GithubUserListViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val searchGithubUserUseCase: SearchGithubUserUseCase = mock()
+    private val searchGithubUserUseCase: SearchGithubUserProfileUseCase = mock()
 
     private lateinit var viewmodel: GithubUserListViewModel
 
     @Before
     fun init() {
         viewmodel = GithubUserListViewModel(
-            searchGithubUserUseCase = searchGithubUserUseCase
+            searchGithubUserProfileUseCase = searchGithubUserUseCase
         )
     }
 
