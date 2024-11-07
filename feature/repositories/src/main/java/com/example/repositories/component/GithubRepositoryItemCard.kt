@@ -37,11 +37,12 @@ import com.example.commondesign.theme.GithubRepositoryFinderTheme
 import com.example.domain.model.GithubRepositoryData
 
 @Composable
-fun GithubRepositoryItemCard(modifier: Modifier = Modifier, repositoryData: GithubRepositoryData) {
+fun GithubRepositoryItemCard(modifier: Modifier = Modifier, repositoryData: GithubRepositoryData, onClicked: (GithubRepositoryData) -> Unit) {
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        shape = RectangleShape
+        shape = RectangleShape,
+        onClick = {onClicked(repositoryData)}
     ) {
         Column(
             modifier = Modifier
@@ -193,7 +194,8 @@ private fun GithubRepositoryItemCardPreview() {
                 starGazersCount = 10,
                 userUrl = "",
                 userImageUrl = ""
-            )
+            ),
+            onClicked = {}
         )
     }
 }
