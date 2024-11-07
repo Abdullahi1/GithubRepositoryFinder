@@ -1,5 +1,6 @@
 package com.example.repositories.screen
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -7,11 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.example.commondesign.common.launchCustomChromeTab
 import com.example.commondesign.component.CustomSearchBar
 import com.example.commondesign.component.LoadingWheel
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
@@ -49,6 +54,8 @@ fun GithubRepositoryListScreenContent(
     uiState: RepositoryUiState = RepositoryUiState.Empty,
     onSearchClicked: (String) -> Unit,
 ) {
+    val context = LocalContext.current
+    val toolbarColor = MaterialTheme.colorScheme.background.toArgb()
     Column(
         modifier = modifier
             .padding(10.dp)
@@ -84,7 +91,14 @@ fun GithubRepositoryListScreenContent(
                             items(count = uiState.repositories.size, key = { uiState.repositories[it].repositoryId }) { index ->
                                 GithubRepositoryItemCard(
                                     modifier = Modifier.animateItem().padding(10.dp),
-                                    repositoryData = uiState.repositories[index]
+                                    repositoryData = uiState.repositories[index],
+                                    onClicked = {
+                                        launchCustomChromeTab(
+                                            context = context,
+                                            uri = Uri.parse(it.githubUrl),
+                                            toolbarColor = toolbarColor
+                                        )
+                                    }
                                 )
                             }
                         }
