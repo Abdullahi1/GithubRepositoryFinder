@@ -14,6 +14,8 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.commondesign)
 
+    implementation(libs.androidx.browser)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
