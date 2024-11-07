@@ -40,7 +40,8 @@ internal object NetworkModule {
             val builder = chain.request().newBuilder()
             builder.addHeader("X-GitHub-Api-Version", "2022-11-28")
             builder.addHeader("Accept", "application/vnd.github+json")
-            builder.addHeader("Authorization", "Bearer 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")
+            //TODO: Uncomment and replace token_value with your github token
+            //builder.addHeader("Authorization", "Bearer token_vale")
             chain.proceed(builder.build())
         }).build()
     }
