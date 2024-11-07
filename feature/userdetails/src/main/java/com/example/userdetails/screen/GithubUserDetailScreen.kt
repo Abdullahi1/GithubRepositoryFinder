@@ -1,5 +1,6 @@
 package com.example.userdetails.screen
 
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -27,7 +29,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +48,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.commondesign.common.Utils
+import com.example.commondesign.common.launchCustomChromeTab
 import com.example.commondesign.component.CustomCircularNetworkImageLoader
 import com.example.commondesign.component.LoadingWheel
 import com.example.commondesign.theme.GithubRepositoryFinderTheme
@@ -100,7 +105,8 @@ fun GithubUserDetailScreenContent(
     uiState: UserDetailsUiState = UserDetailsUiState.Empty,
 ) {
     val density = LocalDensity.current
-
+    val context = LocalContext.current
+    val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
 
     LazyColumn(
         modifier = modifier
@@ -273,7 +279,14 @@ fun GithubUserDetailScreenContent(
                             modifier = Modifier
                                 .animateItem()
                                 .padding(bottom = 4.dp),
-                            repositoryData = uiState.repositories[index]
+                            repositoryData = uiState.repositories[index],
+                            onClick = {
+                                launchCustomChromeTab(
+                                    context = context,
+                                    uri = Uri.parse(it.githubUrl),
+                                    toolbarColor = backgroundColor
+                                )
+                            }
                         )
                     }
                 }

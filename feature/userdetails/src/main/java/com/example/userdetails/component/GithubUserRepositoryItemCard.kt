@@ -41,11 +41,13 @@ import com.example.domain.model.GithubUserRepositoryData
 fun GithubRepositoryItemCard(
     modifier: Modifier = Modifier,
     repositoryData: GithubUserRepositoryData,
+    onClick: (GithubUserRepositoryData) -> Unit
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        shape = RectangleShape
+        shape = RectangleShape,
+        onClick = {onClick(repositoryData)}
     ) {
         Column(
             modifier = Modifier
@@ -217,7 +219,8 @@ private fun GithubRepositoryItemCardPreview() {
                 starGazersCount = 1,
                 createdAt = "2015-12-04T06:51:48Z",
                 updatedAt = "2024-08-27T14:17:33Z"
-            )
+            ),
+            onClick = {}
         )
     }
 }
